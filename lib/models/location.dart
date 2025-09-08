@@ -9,9 +9,9 @@ class Location {
   });
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
-      name: (json['name'] ?? '').toString(),
-      country: (json['country'] ?? '').toString(),
-      localTime: (json['localtime'] ?? '').toString(),
+      name: (json['name'] ?? ''),
+      country: (json['country'] ?? ''),
+      localTime: (json['localtime'] ?? ''),
     );
   }
 }

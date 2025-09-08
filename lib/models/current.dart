@@ -6,11 +6,11 @@ class Current {
   final double feelF;
   final String windDir;
   final double humidity;
-  final double cloud; 
-  final double precipMm; 
+  final double cloud;
+  final double precipMm;
   final double uv;
-  final double visKm; 
-  final double pressureMb; 
+  final double visKm;
+  final double pressureMb;
   final Condition condition;
   const Current({
     required this.tempC,
@@ -51,6 +51,6 @@ class Condition {
   final String icon;
   const Condition({required this.text, required this.icon});
   factory Condition.fromJson(Map<String, dynamic> json) {
-    return Condition(text: json['text'], icon: json['icon']);
+    return Condition(text: json['text'] ?? "", icon: json['icon'] ?? "");
   }
 }
