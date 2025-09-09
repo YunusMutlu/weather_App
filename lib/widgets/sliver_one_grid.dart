@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 
 class SliverOneGrid extends StatelessWidget {
   const SliverOneGrid({
     super.key,
     required this.detailsList,
-    required this.titleList,
-    required this.icon,
+    this.titleList,
+    this.icon,
+    this.url,
   });
 
   final List detailsList;
-  final List titleList;
-  final Icon icon;
+  final List? titleList;
+  final Icon? icon;
+  final String? url;
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +37,10 @@ class SliverOneGrid extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
-              crossAxisAlignment:
-                  CrossAxisAlignment.center, 
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                   child: Center(
-                
                     child: ListView.separated(
                       shrinkWrap: true,
                       itemCount: detailsList.length,
@@ -50,14 +49,15 @@ class SliverOneGrid extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Row(
                           children: [
-                            Text(
-                              titleList[index],
-                              style: Theme.of(context).textTheme.titleMedium
-                                  ?.copyWith(
-                                    color: Colors.blueGrey.shade800,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                            ),
+                            if (titleList != null)
+                              Text(
+                                titleList![index],
+                                style: Theme.of(context).textTheme.titleMedium
+                                    ?.copyWith(
+                                      color: Colors.blueGrey.shade800,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
                             const SizedBox(width: 15),
                             Expanded(
                               child: Text(
@@ -77,10 +77,20 @@ class SliverOneGrid extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 15),
-                Align(
-                  alignment: Alignment.center,
-                  child: icon,
-                ),
+                if (icon != null)
+                  Align(alignment: Alignment.center, child: icon),
+                if (url != null)
+                  Image.network(
+                    url!,
+                    fit: BoxFit.contain,
+                    width: 100,
+                    height: 100,
+                    errorBuilder: (_, __, ___) => Icon(
+                      Icons.cloud_outlined,
+                      color: Colors.blue.shade300,
+                      size: 40,
+                    ),
+                  ),
               ],
             ),
           ),

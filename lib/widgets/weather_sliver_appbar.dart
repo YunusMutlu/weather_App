@@ -10,6 +10,7 @@ class WeatherSliverAppbar extends StatelessWidget {
     final location = weather.location;
 
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       pinned: true,
       floating: false,
       expandedHeight: 180,
