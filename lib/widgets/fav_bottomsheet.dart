@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/providers/favorites_provider.dart';
 import 'package:weather_app/providers/weather_provider.dart';
 import 'package:weather_app/widgets/weather_city_item.dart';

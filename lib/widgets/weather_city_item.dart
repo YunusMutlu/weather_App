@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/models/forecast.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
@@ -74,7 +73,7 @@ class WeatherCityItem extends ConsumerWidget {
         Symbols.navigation,
         size: 28,
         color: Colors.blueGrey.shade700,
-      ), // wind direction
+      ), 
       Icon(Symbols.cloud, size: 28, color: Colors.blueGrey.shade700),
       Icon(Symbols.humidity_high, size: 28, color: Colors.blue.shade800),
       Icon(
@@ -109,6 +108,8 @@ class WeatherCityItem extends ConsumerWidget {
               separatorBuilder: (_, __) => const SizedBox(width: 12),
               itemBuilder: (context, index) {
                 final fcDay = forecast[index];
+                final date = DateTime.parse(fcDay.date);
+                final weekday = DateFormat.EEEE().format(date);
                 final iconUrl = fcDay.day.condition.icon.startsWith('http')
                     ? fcDay.day.condition.icon
                     : 'https:${fcDay.day.condition.icon}';
@@ -140,7 +141,7 @@ class WeatherCityItem extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            fcDay.date,
+                            weekday,
                             style: Theme.of(context).textTheme.bodySmall,
                             textAlign: TextAlign.center,
                           ),
